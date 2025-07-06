@@ -1,0 +1,28 @@
+{
+	"manifest_version" : 3,
+	"name" : "Check all links",
+	"version" : "0.0.1",
+	"description" : "this extension check all links in any website",
+
+	"icons" : {
+		"128": "link.png"
+	},
+	"action" : {
+		"default_popup" : "popup.html",
+		"default_icons" :{
+			"16" : "link.png"
+		},
+		"default_title":"awsome extension"
+	},
+	"permissions": ["activeTab"],
+	"background":{
+		"service_worker" : "service-worker.js"
+		
+	},
+	"content_scripts":[
+		{
+		"matches":["<all_urls>"],
+		"js":["contentScript.js"]
+		}
+	]
+}
