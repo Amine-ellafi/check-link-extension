@@ -53,7 +53,7 @@ return result;
 
 
 console.log("starting ...");
-checkMe(allU);
+// checkMe(allU);
 // Send message to the background service worker
 //chrome.runtime.sendMessage({type: "scanResults", data: result});
 console.log("finished!!!");
@@ -61,12 +61,25 @@ console.log("*******************************************************************
 console.log(result);
 // 1. Send a message to the service worker requesting the user's data
 // Only send message when requested by popup
+// Add this function to remove borders
+function removeBorders() {
+  const allU = document.getElementsByTagName('u');
+  for (let i = 0; i < allU.length; i++) {
+    allU[i].style.border = "none";
+  }
+}
+
+// Modify your message listener to handle the remove borders request
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "scanLinks") {
     const allU = document.getElementsByTagName('u');
     const result = checkMe(allU);
-    sendResponse(result); // Send back the scan results
+    sendResponse(result);
   }
-  return true; // Required for async response
+  else if (request.action === "removeBorders") {
+    removeBorders();
+    sendResponse({status: "borders removed"});
+  }
+  return true;
 });
 console.log("send")

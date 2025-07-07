@@ -18,13 +18,21 @@ document.getElementById('btnScan').addEventListener('click', async () => {
   }
 });
 
+document.getElementById('btnRemoveBorders').addEventListener('click', () => {
+  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, {action: "removeBorders"}, (response) => {
+      console.log('Borders removed:', response);
+    });
+  });
+});
+
 function displayResults(results) {
   // Clear popup and show results
   document.body.innerHTML = '<h1>Scan Results</h1>';
   const container = document.createElement('div');
   
   // Display total count
-  const countElem = document.createElement('p');
+  const countElem = document.createElement('h3');
   countElem.textContent = `Total underlined elements: ${results.Nb}`;
   container.appendChild(countElem);
   

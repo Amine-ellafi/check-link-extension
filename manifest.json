@@ -1,7 +1,8 @@
 {
 	"manifest_version" : 3,
 	"name" : "Check all links",
-	"version" : "0.0.1",
+	"version" : "0.0.2",
+	"author":"amineellafi@isikef.u-jendouba.tn",
 	"description" : "this extension check all links in any website",
 
 	"icons" : {
