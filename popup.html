@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="popup.css">
-	<title>Link checks</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Link Checker</title>
 </head>
 <body>
-	<h1>Check Underlinks</h1>
-	<button id="btnScan">Scan me</button>
-	<button id="btnRemoveBorders">Remove Borders</button>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <i class="fas fa-link logo"></i>
+        <h1>Underlink Scanner</h1>
+        <p>Check all underlined elements on the page</p>
+      </div>
+      
+      <div class="buttons">
+        <button id="btnScan" class="btn scan-btn">
+          <i class="fas fa-search"></i> Scan Page
+        </button>
+        <button id="btnRemoveBorders" class="btn remove-btn">
+          <i class="fas fa-eraser"></i> Clear Highlights
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="resultsContainer" class="results-container hidden">
+    <!-- Results will be inserted here by JavaScript -->
+  </div>
+  
+  <script src="popup.js"></script>
 </body>
-<script src="popup.js"></script>
 </html>

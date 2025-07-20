@@ -1,133 +1,168 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
-
 :root {
-  --clr-blue: #1890ff;
-  --clr-green: #01c3a8;
-  --clr-orange: #ffb741;
-  --clr-red: #a63d2a;
-  --clr-blue-dark: #1478d6;
-  --border-color: #3a3a42;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 300px;
-  height: 100%;
-  background: #232228;
+  --clr-primary: #4361ee;
+  --clr-primary-dark: #3a56d4;
+  --clr-danger: #ef233c;
+  --clr-danger-dark: #d90429;
+  --clr-success: #2ec4b6;
+  --clr-success-dark: #1b9aaa;
+  --clr-dark: #2b2d42;
+  --clr-light: #edf2f4;
+  --clr-gray: #8d99ae;
+  --border-radius: 12px;
+  --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 body {
-  font-family: "Nunito", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 300px;
   min-height: 200px;
-  max-height: 500px;
-  position: relative;
+  font-family: "Nunito", sans-serif;
+  background: var(--clr-light);
+  color: var(--clr-dark);
+  overflow: hidden;
 }
 
-/* Add a pseudo-element to create the border */
-body::before {
-  content: "";
+.container {
+  padding: 1.5rem;
+}
+
+.card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  font-size: 2.5rem;
+  color: var(--clr-primary);
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  color: var(--clr-dark);
+}
+
+p {
+  color: var(--clr-gray);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn {
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.scan-btn {
+  background: var(--clr-primary);
+  color: white;
+}
+
+.scan-btn:hover {
+  background: var(--clr-primary-dark);
+  transform: translateY(-2px);
+}
+
+.remove-btn {
+  background: var(--clr-danger);
+  color: white;
+}
+
+.remove-btn:hover {
+  background: var(--clr-danger-dark);
+  transform: translateY(-2px);
+}
+
+/* Results container */
+.results-container {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
-  pointer-events: none;
-  z-index: 1000;
+  background: white;
+  padding: 1.5rem;
+  overflow-y: auto;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
 }
 
-h1 {
-  color: #fff;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  text-align: center;
+.results-container.hidden {
+  transform: translateX(100%);
 }
 
-h3 {
-  color: #fff;
-  font-size: 1.2rem;
-  margin: 15px 0 10px 0;
-  font-weight: 600;
-  width: 100%;
-  text-align: center;
+.result-item {
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-p {
-  color: #ddd;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 15px;
-  text-align: center;
-  width: 100%;
+.result-item.valid {
+  background-color: rgba(46, 196, 182, 0.1);
+  color: var(--clr-success-dark);
 }
 
-#btnScan {
-  background: var(--clr-blue);
+.result-item.invalid {
+  background-color: rgba(239, 35, 60, 0.1);
+  color: var(--clr-danger-dark);
+}
+
+.back-btn {
+  margin-top: 1.5rem;
+  background: var(--clr-gray);
   color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 2em;
-  font-family: "Nunito", sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
+  width: 100%;
 }
 
-#btnScan:hover {
-  background: var(--clr-blue-dark);
+.back-btn:hover {
+  background: var(--clr-dark);
 }
 
 /* Scrollbar styling */
-body {
-  scrollbar-width: thin;
-  scrollbar-color: #3a3a42 #2a2a2a;
-}
-
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
 }
 
-body::-webkit-scrollbar-track {
-  background: #2a2a2a;
-  border-radius: 0 12px 12px 0;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: #3a3a42;
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
   border-radius: 4px;
 }
 
-body::-webkit-scrollbar-thumb:hover {
-  background: #4a4a52;
-}
-#btnRemoveBorders {
-  background: var(--clr-red);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 2em;
-  font-family: "Nunito", sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
+::-webkit-scrollbar-thumb {
+  background: var(--clr-primary);
+  border-radius: 4px;
 }
 
-#btnRemoveBorders:hover {
-  background: var(--clr-red-dark);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-primary-dark);
 }
